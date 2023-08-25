@@ -1,28 +1,37 @@
 package telran.interviews;
 
 import java.util.Comparator;
+import java.util.LinkedList;
 
 public class MyStack<T> {
-	//TODO
+	LinkedList<T> values = new LinkedList<>();
+	LinkedList<T> maxValues = new LinkedList<>();
+	Comparator<T> comp;
 	public MyStack(Comparator<T> comp) {
-		//TODO
+		this.comp = comp;
 	}
 	public MyStack(){
-		//TODO
+		this((Comparator<T>) Comparator.naturalOrder());
 	}
-	public void push() {
-		//TODO
+	public void push(T element) {
+		values.add(element);
+		if(maxValues.isEmpty() || comp.compare(element, maxValues.getLast()) >= 0) {
+			maxValues.add(element);
+		}
 	}
 	public T pop() {
-		//TODO
-		return null;
+		T element = values.removeLast();
+		if(comp.compare(element, maxValues.getLast()) == 0) {
+			maxValues.removeLast();
+		}
+		return element;
 	}
 	public boolean isEmpty() {
-		//TODO
-		return false;
+		
+		return values.isEmpty();
 	}
 	public T getMax() {
-		//TODO
-		return null;
+		
+		return maxValues.getLast();
 	}
 }
