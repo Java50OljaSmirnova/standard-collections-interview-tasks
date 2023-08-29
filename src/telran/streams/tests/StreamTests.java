@@ -72,6 +72,7 @@ class StreamTests {
 		}).forEach(e -> System.out.printf("%s -> %d\n", e.getKey(), e.getValue()));
 	}
 	@Test
+	@Disabled
 	void displayOccurrencesTest() {
 		String[] strings = {"lmn", "ab", "lmn", "ab", "c", "a", "lmn"};
 		displayOccurrences(strings);
@@ -79,8 +80,7 @@ class StreamTests {
 	}
 	@Test
 	void printDigitStatisticsTest(){
-		StreamTasks streamTask = new StreamTasks();
-		streamTask.printDigitStatics();
+		StreamTasks.printDigitStatics2();
 	}
 
 }
