@@ -37,5 +37,8 @@ public class StreamTasks {
 		map.entrySet().stream().sorted((e1, e2) -> Long.compare(e2.getValue(), e1.getValue()))
 		.forEach(e -> System.out.printf("%s -> %s\n", e.getKey(), e.getValue()));
 	}
+    public static void printSportLotoNumbers() {
+    	new Random().ints(1, 50).distinct().limit(6).forEach(n -> System.out.print(n + " "));
+    }
 	
 }

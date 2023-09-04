@@ -1,4 +1,4 @@
-package telran.jcf;
+package telran.standart.collections.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,7 +28,7 @@ class StandartListTest {
 	void sublistTest() {
 		LinkedList<Integer> linkedList = new LinkedList<>(List.of(10, -5, 13, 17, 10));
 		List<Integer> subList1 = linkedList.subList(1, 3);
-		Integer[] expected1 = {-5, 13};
+//		Integer[] expected1 = {-5, 13};
 		Integer[] expected2 = {10, -5, 100, 13, 17, 10};
 		subList1.add(1, 100);
 		assertArrayEquals(expected2, linkedList.toArray(Integer[]::new));
@@ -38,7 +38,7 @@ class StandartListTest {
 		subList2.remove(0);
 //		subList2.add(0, 20);
 //		linkedList.add(0, 10);
-		Integer[] expected4 = {10, -5, 13, 100, 10};
+//		Integer[] expected4 = {10, -5, 13, 100, 10};
 		Integer[] expected5 = { 10};
 		assertArrayEquals(expected5, subList2.toArray(Integer[]::new));
 		assertThrowsExactly(ConcurrentModificationException.class, () -> subList1.toArray(Integer[]::new));

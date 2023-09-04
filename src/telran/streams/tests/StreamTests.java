@@ -61,26 +61,54 @@ class StreamTests {
 		System.out.println();
 	}
 	private void displayOccurrences(String[] strings) {
-		Map<String, Long> map = Arrays.stream(strings)
-				.collect(Collectors.groupingBy(s -> s, Collectors.counting()));
-		map.entrySet().stream().sorted((e1, e2) -> {
+//		Map<String, Long> map = Arrays.stream(strings)
+//				.collect(Collectors.groupingBy(s -> s, Collectors.counting()));
+//		map.entrySet().stream().sorted((e1, e2) -> {
+//			int res = Long.compare(e2.getValue(), e1.getValue());
+//			if(res == 0) {
+//				res = e1.getKey().compareTo(e2.getKey());
+//			}
+//			return res;
+//		}).forEach(e -> System.out.printf("%s -> %d\n", e.getKey(), e.getValue()));
+		Map<String,Integer> map = getMap(strings);
+		List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
+		list.sort((e1, e2) -> {
 			int res = Long.compare(e2.getValue(), e1.getValue());
 			if(res == 0) {
 				res = e1.getKey().compareTo(e2.getKey());
 			}
 			return res;
-		}).forEach(e -> System.out.printf("%s -> %d\n", e.getKey(), e.getValue()));
+		});
+		list.forEach(e -> System.out.printf("%s -> %d\n", e.getKey(), e.getValue()));
 	}
+	private Map<String, Integer> getMap(String[] strings) {
+		Map<String, Integer> res = new HashMap<>();
+		for(String str: strings) {
+			res.merge(str, 1, Integer::sum);
+		}
+		return res;
+	}
+
 	@Test
-	@Disabled
+	//@Disabled
 	void displayOccurrencesTest() {
 		String[] strings = {"lmn", "ab", "lmn", "ab", "c", "a", "lmn"};
 		displayOccurrences(strings);
 			
 	}
 	@Test
+	@Disabled
 	void printDigitStatisticsTest(){
 		StreamTasks.printDigitStatics2();
+	}
+	@Test
+	@Disabled
+	void printSportLotoNumbersTest() {
+		for(int i = 0; i < 100; i++) {
+			StreamTasks.printSportLotoNumbers();
+			System.out.println();	
+		}
+		
 	}
 
 }

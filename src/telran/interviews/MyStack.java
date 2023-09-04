@@ -10,6 +10,7 @@ public class MyStack<T> {
 	public MyStack(Comparator<T> comp) {
 		this.comp = comp;
 	}
+	@SuppressWarnings("unchecked")
 	public MyStack(){
 		this((Comparator<T>) Comparator.naturalOrder());
 	}
